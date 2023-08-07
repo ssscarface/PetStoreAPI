@@ -17,3 +17,4 @@ class TestAccountCreation:
     assert createPet.tags[0]['id'] == 1
     assert createPet.tags[0]['name'] == "FirstName"
     assert createPet.status == "available"
+    print("Assertion ended")
