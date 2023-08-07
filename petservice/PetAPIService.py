@@ -13,3 +13,7 @@ class PetAPIService:
         print("Payload: " + str(payload.__dict__))
         response = APIClient(pestStoreUrl).post("pet", payload)
         return ApiResponse(response)
+
+    def get_pet_by_id(self, pet_id):
+        response = APIClient(pestStoreUrl).get(f"pet/{pet_id}")
+        return ApiResponse(response)

@@ -18,3 +18,8 @@ class APIClient:
         response = requests.post(url, headers=headers,
                                  data=json.dumps(payload.__dict__, default=lambda o: o.__dict__))
         return response
+
+    def get(self, endpoint):
+        url = f"{self.base_url}/{endpoint}"
+        print("URL: " + str(url))
+        return requests.get(url, headers=headers)
