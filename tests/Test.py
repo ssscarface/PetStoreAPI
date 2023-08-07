@@ -17,3 +17,11 @@ class TestAccountCreation:
     assert createPet.tags[0]['id'] == 1
     assert createPet.tags[0]['name'] == "FirstName"
     assert createPet.status == "available"
+
+    pet_id=createPet.id
+    verification_name=createPet.name
+    print(pet_id)
+
+    retrieved_pet=PetAPIService().get_pet_by_id(pet_id).convert_response_to_pet_model()
+    assert retrieved_pet.id==pet_id
+    assert retrieved_pet.name==verification_name
