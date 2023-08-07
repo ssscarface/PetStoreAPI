@@ -17,7 +17,7 @@ class CategoryModel:
         self.name = name
 
 class PetModelRequest:
-    def __init__(self, id, category, name, photoUrls, tags, status):
+    def __init__(self, id, name, category=None, photoUrls=None, tags=None, status=None):
         self.id = id
         self.category = category
         self.name = name
