@@ -1,7 +1,9 @@
-from  api.APIResponse import ApiResponse
+from api.APIResponse import ApiResponse
 from api.APIClient import APIClient
 
 pestStoreUrl = "https://petstore.swagger.io/v2"
+
+
 class PetAPIService:
 
     def __init__(self):
@@ -11,5 +13,3 @@ class PetAPIService:
         print("Payload: " + str(payload.__dict__))
         response = APIClient(pestStoreUrl).post("pet", payload)
         return ApiResponse(response)
-
-
