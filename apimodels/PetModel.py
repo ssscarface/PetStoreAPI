@@ -24,3 +24,8 @@ class PetModelRequest:
         self.photoUrls = photoUrls.urls if isinstance(photoUrls, Urls) else photoUrls
         self.tags = tags.tags if isinstance(tags, Tags) else tags
         self.status = status
+
+class PetModelUpdateByID:
+    def __init__(self, name, status):
+        self.name= name
+        self.status=status
