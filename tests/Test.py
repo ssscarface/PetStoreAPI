@@ -25,3 +25,8 @@ class TestAccountCreation:
     retrieved_pet=PetAPIService().get_pet_by_id(pet_id).convert_response_to_pet_model()
     assert retrieved_pet.id==pet_id
     assert retrieved_pet.name==verification_name
+
+    petModelForUpdate = PetModelUpdateByID("Bob", "sold")
+    pet__id = retrieved_pet.id
+    response = PetAPIService().post_pet_by_id(petModelForUpdate, pet__id)
+    print(response.json())
