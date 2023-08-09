@@ -22,13 +22,16 @@ class APIClient:
                                  data=json.dumps(payload.__dict__, default=lambda o: o.__dict__))
         return response
 
-    def get(self, endpoint):
+
+    def get(self, endpoint, params=None):
         url = f"{self.base_url}/{endpoint}"
         print("URL: " + str(url))
-        return requests.get(url, headers=headers)
+        response = requests.get(url, params=params)
+        return response
 
     def post_by_ID(self,endpoint,payload):
         url = f"{self.base_url}/{endpoint}"
         print("URL: " + str(url))
         response = requests.post(url, headers=headers_for_post_by_id,data=payload.__dict__)
         return response
+
