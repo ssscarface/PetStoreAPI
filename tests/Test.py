@@ -32,3 +32,7 @@ class TestAccountCreation:
     updated_pet=PetAPIService().get_pet_by_id(pet__id)
     assert updated_pet.name==petModelForUpdate.name
     assert updated_pet.status==petModelForUpdate.status
+
+    deleting_pet=PetAPIService().delete_pet(pet__id)
+    double_check_deleted_pet=PetAPIService().get_pet_by_id(pet__id)
+    assert double_check_deleted_pet==None

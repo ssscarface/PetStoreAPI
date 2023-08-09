@@ -10,6 +10,10 @@ headers_for_post_by_id={
             'accept': 'application/json',
             'Content-Type': 'application/x-www-form-urlencoded'
         }
+
+headers_for_delete = {
+    'accept': 'application/json'
+}
 class APIClient:
 
     def __init__(self, url):
@@ -32,3 +36,8 @@ class APIClient:
         print("URL: " + str(url))
         response = requests.post(url, headers=headers_for_post_by_id,data=payload.__dict__)
         return response
+
+    def delete_pet (self, endpoint):
+        url = f"{self.base_url}/{endpoint}"
+        print("URL: " + str(url))
+        return requests.delete(url, headers=headers_for_delete)
