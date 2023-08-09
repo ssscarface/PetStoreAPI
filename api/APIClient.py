@@ -23,5 +23,4 @@ class APIClient:
         url = f"{self.base_url}/{endpoint}"
         print("URL: " + str(url))
         response = requests.get(url, params=params)
-
         return response
