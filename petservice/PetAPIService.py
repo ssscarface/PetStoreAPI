@@ -15,5 +15,8 @@ class PetAPIService:
         return ApiResponse(response)
 
     def get_pet_by_status(self, pet_status):
-        response = APIClient(pestStoreUrl).get("pet/findByStatus", pet_status)
-        return ApiResponse(response)
+        params = {
+            'status': pet_status
+        }
+        response = APIClient(pestStoreUrl).get("pet/findByStatus", params)
+        return ApiResponse(response).convert_response_to_list_of_pet_models()

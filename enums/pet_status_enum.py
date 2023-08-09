@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class Status(Enum):
+class PetStatus(Enum):
     AVAILABLE = "available"
     PENDING = "pending"
     SOLD = "sold"
