@@ -29,3 +29,6 @@ class PetAPIService:
         response = APIClient(pestStoreUrl).post_by_ID(f"pet/{pet_id}", payload)
         return response
 
+    def update_pet(self, payload):
+        response = APIClient(pestStoreUrl).put("pet", payload)
+        return ApiResponse(response).convert_response_to_pet_model()
