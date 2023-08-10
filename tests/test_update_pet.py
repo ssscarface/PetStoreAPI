@@ -1,5 +1,6 @@
 from petservice.PetAPIService import PetAPIService
 from apimodels.PetModel import *
+from enums.pet_status_enum import PetStatus
 
 
 class TestUpdatePet:
@@ -12,4 +13,5 @@ class TestUpdatePet:
         "available"
     )
     updated_pet = PetAPIService().update_pet(pet_data)
-    assert updated_pet.status == "available"
+    assert updated_pet.name == "doggie"
+    assert updated_pet.status == PetStatus.AVAILABLE.value
