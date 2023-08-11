@@ -30,3 +30,9 @@ class PetModelUpdateByID:
         self.name= name
         self.status=status
 
+class ResponseDeletedPet:
+    def __init__(self, code,type,message):
+        self.code=code
+        self.type=type
+        self.message=message
+
