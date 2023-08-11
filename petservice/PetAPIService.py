@@ -13,6 +13,14 @@ class PetAPIService:
         response = APIClient(pestStoreUrl).post("pet", payload)
         return ApiResponse(response)
 
+
+    def get_pet_by_status(self, pet_status):
+        params = {
+            'status': pet_status
+        }
+        response = APIClient(pestStoreUrl).get("pet/findByStatus", params)
+        return ApiResponse(response).convert_response_to_list_of_pet_models()
+
     def get_pet_by_id(self, pet_id):
         response = APIClient(pestStoreUrl).get(f"pet/{pet_id}")
         return ApiResponse(response).convert_response_to_pet_model()
@@ -20,6 +28,11 @@ class PetAPIService:
     def post_pet_by_id(self,payload, pet_id):
         response = APIClient(pestStoreUrl).post_by_ID(f"pet/{pet_id}", payload)
         return response
+
     def delete_pet(self,pet_id):
         response = APIClient(pestStoreUrl).delete_pet(f"pet/{pet_id}")
-        return response
+
+    def update_pet(self, payload):
+        response = APIClient(pestStoreUrl).put("pet", payload)
+        return ApiResponse(response).convert_response_to_pet_model()
+
