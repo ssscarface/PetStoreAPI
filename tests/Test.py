@@ -11,7 +11,7 @@ class TestAccountCreation:
         Tags(Tag(1, "FirstName")),
         "available"
     )
-    createPet = PetAPIService().createPet(pet_data).convert_response_to_pet_model()
+    createPet = PetAPIService().createPet(pet_data)
     assert createPet.name == 'doggie'
     assert createPet.photoUrls[0] == "url1"
     assert createPet.tags[0]['id'] == 1
