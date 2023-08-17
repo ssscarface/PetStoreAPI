@@ -10,6 +10,8 @@ headers_for_post_by_id={
             'accept': 'application/json',
             'Content-Type': 'application/x-www-form-urlencoded'
         }
+
+
 class APIClient:
 
     def __init__(self, url):
@@ -21,7 +23,6 @@ class APIClient:
         response = requests.post(url, headers=headers,
                                  data=json.dumps(payload.__dict__, default=lambda o: o.__dict__))
         return response
-
 
     def get(self, endpoint, params=None):
         url = f"{self.base_url}/{endpoint}"
@@ -39,3 +40,9 @@ class APIClient:
         url = f"{self.base_url}/{endpoint}"
         response = requests.put(url, headers=headers, data=json.dumps(payload.__dict__, default=lambda o: o.__dict__))
         return response
+
+    def post_image(self, endpoint, file):
+        url = f"{self.base_url}/{endpoint}/uploadImage"
+        response = requests.post(url, files=file)
+        return response
+

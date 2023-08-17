@@ -1,12 +1,9 @@
-import json
-
 from apimodels.PetModel import *
 
 
 class ApiResponse:
     def __init__(self, response):
         self.response_data = response.json()
-
 
     def convert_response_to_pet_model(self):
         pet_data = self.response_data
@@ -23,3 +20,6 @@ class ApiResponse:
                     list_of_pet_models.append(PetModelRequest(**pet_data))
         return list_of_pet_models
 
+    def convert_response_to_upload_image_model(self):
+        response_data = self.response_data
+        return UploadImageResponse(**response_data)
