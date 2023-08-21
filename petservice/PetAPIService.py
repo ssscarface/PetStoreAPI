@@ -11,7 +11,7 @@ class PetAPIService:
 
     def createPet(self, payload):
         response = APIClient(pestStoreUrl).post("pet", payload)
-        return ApiResponse(response)
+        return ApiResponse(response).convert_response_to_pet_model()
 
 
     def get_pet_by_status(self, pet_status):
