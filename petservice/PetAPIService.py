@@ -1,6 +1,7 @@
 from api.APIResponse import ApiResponse
 from api.APIClient import APIClient
 
+
 pestStoreUrl = "https://petstore.swagger.io/v2"
 
 
@@ -29,10 +30,16 @@ class PetAPIService:
         response = APIClient(pestStoreUrl).post_by_ID(f"pet/{pet_id}", payload)
         return response
 
+
     def delete_pet(self,pet_id):
         response = APIClient(pestStoreUrl).delete_pet(f"pet/{pet_id}")
+
 
     def update_pet(self, payload):
         response = APIClient(pestStoreUrl).put("pet", payload)
         return ApiResponse(response).convert_response_to_pet_model()
 
+
+    def upload_image(self, pet_id, file):
+        response = APIClient(pestStoreUrl).post_image(f"pet/{pet_id}", file)
+        return ApiResponse(response).convert_response_to_upload_image_model()

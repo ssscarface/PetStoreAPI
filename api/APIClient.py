@@ -11,9 +11,13 @@ headers_for_post_by_id={
             'Content-Type': 'application/x-www-form-urlencoded'
         }
 
+
+
+
 headers_for_delete = {
     'accept': 'application/json'
 }
+
 class APIClient:
 
     def __init__(self, url):
@@ -25,7 +29,6 @@ class APIClient:
         response = requests.post(url, headers=headers,
                                  data=json.dumps(payload.__dict__, default=lambda o: o.__dict__))
         return response
-
 
     def get(self, endpoint, params=None):
         url = f"{self.base_url}/{endpoint}"
@@ -39,12 +42,21 @@ class APIClient:
         response = requests.post(url, headers=headers_for_post_by_id,data=payload.__dict__)
         return response
 
+
     def delete_pet (self, endpoint):
         url = f"{self.base_url}/{endpoint}"
         print("URL: " + str(url))
         return requests.delete(url, headers=headers_for_delete)
 
+
     def put(self, endpoint, payload):
         url = f"{self.base_url}/{endpoint}"
         response = requests.put(url, headers=headers, data=json.dumps(payload.__dict__, default=lambda o: o.__dict__))
         return response
+
+
+    def post_image(self, endpoint, file):
+        url = f"{self.base_url}/{endpoint}/uploadImage"
+        response = requests.post(url, files=file)
+        return response
+
