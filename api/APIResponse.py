@@ -1,4 +1,5 @@
 from apimodels.PetModel import *
+from apimodels.OrderModel import OrderModel
 
 
 class ApiResponse:
@@ -20,6 +21,14 @@ class ApiResponse:
                     list_of_pet_models.append(PetModelRequest(**pet_data))
         return list_of_pet_models
 
+
     def convert_response_to_upload_image_model(self):
         response_data = self.response_data
         return UploadImageResponse(**response_data)
+
+    def convert_response_to_order_model(self):
+        order_data = self.response_data
+        if 'id' in order_data:
+            return OrderModel(**order_data)
+        return None
+

@@ -11,7 +11,7 @@ class TestAccountCreation:
         Tags(Tag(1, "FirstName")),
         "available"
     )
-    createPet = PetAPIService().createPet(pet_data).convert_response_to_pet_model()
+    createPet = PetAPIService().createPet(pet_data)
     assert createPet.name == 'doggie'
     assert createPet.photoUrls[0] == "url1"
     assert createPet.tags[0]['id'] == 1
@@ -32,3 +32,9 @@ class TestAccountCreation:
     updated_pet=PetAPIService().get_pet_by_id(pet__id)
     assert updated_pet.name==petModelForUpdate.name
     assert updated_pet.status==petModelForUpdate.status
+
+    deleting_pet=PetAPIService().delete_pet(pet__id).json()
+    deleted_pet_response = ResponseDeletedPet(deleting_pet['code'], deleting_pet['type'], deleting_pet['message'])
+    assert deleted_pet_response.message == str(pet__id)
+    double_check_deleted_pet=PetAPIService().get_pet_by_id(pet__id)
+    assert double_check_deleted_pet is None

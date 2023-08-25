@@ -12,7 +12,7 @@ class PetAPIService:
 
     def createPet(self, payload):
         response = APIClient(pestStoreUrl).post("pet", payload)
-        return ApiResponse(response)
+        return ApiResponse(response).convert_response_to_pet_model()
 
 
     def get_pet_by_status(self, pet_status):
@@ -30,9 +30,15 @@ class PetAPIService:
         response = APIClient(pestStoreUrl).post_by_ID(f"pet/{pet_id}", payload)
         return response
 
+
+    def delete_pet(self,pet_id):
+        response = APIClient(pestStoreUrl).delete_pet(f"pet/{pet_id}")
+
+
     def update_pet(self, payload):
         response = APIClient(pestStoreUrl).put("pet", payload)
         return ApiResponse(response).convert_response_to_pet_model()
+
 
     def upload_image(self, pet_id, file):
         response = APIClient(pestStoreUrl).post_image(f"pet/{pet_id}", file)

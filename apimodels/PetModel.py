@@ -36,8 +36,17 @@ class PetModelUpdateByID:
         self.status=status
 
 
+
 class UploadImageResponse:
     def __init__(self, code, type, message):
         self.code = code
         self.type = type
         self.message = message
+
+class ResponseDeletedPet:
+    def __init__(self, code,type,message):
+        self.code=code
+        self.type=type
+        self.message=message
+
+

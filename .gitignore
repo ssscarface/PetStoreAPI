@@ -1,0 +1,11 @@
+.idea/
+
+PetStoreAPI/
+
+api/__pycache__/
+
+apimodels/__pycache__/
+
+enums/__pycache__/
+
+petservice/__pycache__/
