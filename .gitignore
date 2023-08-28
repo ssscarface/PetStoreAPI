@@ -9,3 +9,5 @@ apimodels/__pycache__/
 enums/__pycache__/
 
 petservice/__pycache__/
+
+utils/__pycache__/

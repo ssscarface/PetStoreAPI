@@ -33,6 +33,7 @@ class PetAPIService:
 
     def delete_pet(self,pet_id):
         response = APIClient(pestStoreUrl).delete_pet(f"pet/{pet_id}")
+        return response
 
 
     def update_pet(self, payload):

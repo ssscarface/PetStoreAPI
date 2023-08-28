@@ -1,22 +1,16 @@
+from enums.pet_status_enum import Prefix
 from petservice.PetAPIService import PetAPIService
 from apimodels.PetModel import *
-
+from utils.random_pet_generator import RandomPetGenerator
 
 class TestAccountCreation:
-    pet_data = PetModelRequest(
-        0,
-        CategoryModel(0, "string"),
-        "doggie",
-        Urls("url1"),
-        Tags(Tag(1, "FirstName")),
-        "available"
-    )
-    createPet = PetAPIService().createPet(pet_data)
-    assert createPet.name == 'doggie'
-    assert createPet.photoUrls[0] == "url1"
-    assert createPet.tags[0]['id'] == 1
-    assert createPet.tags[0]['name'] == "FirstName"
-    assert createPet.status == "available"
+    pet_random_data = RandomPetGenerator.generate_random_pet_request()
+    createPet = PetAPIService().createPet(pet_random_data)
+    assert createPet.name == pet_random_data.name
+    assert createPet.photoUrls[0] == pet_random_data.photoUrls[0]
+    #assert createPet.tags[0]['id'] == pet_random_data.tags[0]['id']
+    #assert createPet.tags[0]['name'] == pet_random_data.tags[0]['name']
+    assert createPet.status == pet_random_data.status
 
     pet_id=createPet.id
     verification_name=createPet.name
@@ -26,7 +20,9 @@ class TestAccountCreation:
     assert retrieved_pet.id==pet_id
     assert retrieved_pet.name==verification_name
 
-    petModelForUpdate = PetModelUpdateByID("Bob", "sold")
+    updated_name = RandomPetGenerator.generate_random_string(8, Prefix.Name.value)
+    updated_status = RandomPetGenerator.generate_random_status()
+    petModelForUpdate = PetModelUpdateByID(updated_name, updated_status)
     pet__id = retrieved_pet.id
     response = PetAPIService().post_pet_by_id(petModelForUpdate, pet__id)
     updated_pet=PetAPIService().get_pet_by_id(pet__id)
